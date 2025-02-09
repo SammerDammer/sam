@@ -1,0 +1,18 @@
+import random
+
+def select_uniform(main_uniforms, alternate_uniforms, total_games=12):
+    if not main_uniforms:  
+        raise ValueError("There must be at least one main uniform.")
+
+    alt_chance = len(alternate_uniforms) / total_games if alternate_uniforms else 0  # Avoid division by zero
+    
+    if alternate_uniforms and random.random() < alt_chance:
+        return random.choice(alternate_uniforms)  # Pick a random alternate
+    else:
+        return random.choice(main_uniforms)  # Pick a random main uniform
+
+# Example usage:
+main_uniforms = ["home"]
+alternate_uniforms = ["alternate"]  # No alternates
+
+print(select_uniform(main_uniforms, alternate_uniforms))  # Generates a uniform for one game
